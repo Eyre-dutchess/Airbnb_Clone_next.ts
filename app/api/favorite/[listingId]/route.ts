@@ -7,7 +7,7 @@ interface IParams{
     listingId: string
 }
 export const POST =async (request: Request, 
-    {params}:{params: IParams}
+    {params}:{params: Promise<IParams>}
 ) =>{
     const curUser = await getCurrentUser() as SafeUser
 
@@ -31,7 +31,7 @@ export const POST =async (request: Request,
 }
 
 export const DELETE = async (request: Request, 
-    {params}:{params: IParams}
+    {params}:{params: Promise<IParams>}
 )=>{
     const curUser = await getCurrentUser() as SafeUser
 
