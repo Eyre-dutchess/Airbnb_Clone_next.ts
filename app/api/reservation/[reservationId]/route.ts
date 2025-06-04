@@ -6,7 +6,7 @@ interface IParams{
     reservationId?: string
 }
 export const DELETE =async (request: Request,
-    {params}:{params:IParams}
+    {params}:{params:Promise<IParams>}
 ) =>{
     const curUser = await getCurrentUser()
     if(!curUser){
