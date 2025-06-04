@@ -8,11 +8,20 @@ import { ListingCard } from "./components/listing/ListingCard";
 
 
 interface HomeParams{
-  searchParams: IListingParams
+     userId?: string
+    category?: string
+    location?: string
+    roomCount?: number
+    guestCount?: number
+    bathCount?: number
+    startDate?: string
+    endDate?: string
 }
-export default async function Home({searchParams}: HomeParams) {
+export default async function Home(
+  {params}:{params: Promise<HomeParams>}
+  ){
   const curUser = await getCurrentUser() 
-  const listings = await getListings(searchParams)
+  const listings = await getListings(params)
  
 
   if(listings.length < 1){
