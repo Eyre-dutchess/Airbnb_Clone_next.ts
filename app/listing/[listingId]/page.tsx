@@ -13,7 +13,7 @@ interface IParams{
   listingId?: string
 }
 export default async function ListingPage(
-  {params}:{params:IParams}
+  {params}:{params: Promise<IParams>}
 ) {
   const curUser = await getCurrentUser() as SafeUser
   const listing = await getListingById(params) 
