@@ -6,7 +6,7 @@ interface IParams{
     listingId?: string
 }
 export const DELETE = async(request:Request,
-    {params}:{params:IParams}
+    {params}:{params:Promise<IParams>}
 )=>{
     try {
         const curUser = await getCurrentUser()
