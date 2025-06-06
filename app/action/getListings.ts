@@ -11,7 +11,7 @@ export interface IListingParams{
     endDate?: string
 }
 export const getListings = async (
-    params: Promise<IListingParams>
+    params: IListingParams
 ) =>{
     try {
         const{
