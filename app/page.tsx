@@ -7,11 +7,11 @@ import { EmptyState } from "./components/EmptyState";
 import { ListingCard } from "./components/listing/ListingCard";
 
 
-interface HomeParams{
+interface PageProps{
     searchParams: IListingParams
 }
 export default async function Home(
-  {searchParams} :HomeParams
+  {searchParams} :PageProps
   ){
   const curUser = await getCurrentUser() 
   const listings = await getListings(searchParams)
