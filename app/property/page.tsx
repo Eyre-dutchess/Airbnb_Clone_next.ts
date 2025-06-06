@@ -1,7 +1,7 @@
 import React from 'react'
 
+import prisma from "@/app/libs/prismadb"
 import { getCurrentUser } from '../action/getCurrentUser'
-import { getListings } from '../action/getListings'
 import { ClientOnly } from '../components/ClientOnly'
 import { EmptyState } from '../components/EmptyState'
 import { PropertyClient } from './PropertyClient'
@@ -19,9 +19,14 @@ export default async function PropertyPage() {
     )
   }
 
-  const listings = await getListings({
-    userId: curUser.id
-  })
+ const listings = await prisma.listing.findMany({
+            where:{
+              userId: curUser.id
+            },
+            orderBy:{
+                createdAt: "desc"
+            }
+        })
   if(listings.length === 0){
     return (
       <ClientOnly>
