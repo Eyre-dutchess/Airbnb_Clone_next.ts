@@ -25,11 +25,25 @@ export default async function ReservationPage() {
             where:{
               userId: curUser.id
             },
+            include:{
+                listing: true
+            },
             orderBy:{
                 createdAt: "desc"
             }
         })
-  if(reservations.length == 0){
+  const safeReservations = reservations.map((item:any)=>({
+                ...item, 
+                createdAt: item.createdAt.toISOString(),
+                startDate: item.startDate.toISOString(),
+                endDate: item.endDate.toISOString(),
+                listing:{
+                    ...item.listing,
+                    createdAt: item.listing.createdAt.toISOString()
+                }
+            
+        }))
+  if(safeReservations.length == 0){
     return (
       <ClientOnly>
         <EmptyState 
@@ -40,7 +54,7 @@ export default async function ReservationPage() {
 
   return (
     <ClientOnly>
-        <ReservationClient reservations={reservations} curUser = {curUser}/>
+        <ReservationClient reservations={safeReservations} curUser = {curUser}/>
     </ClientOnly>
   )
   
