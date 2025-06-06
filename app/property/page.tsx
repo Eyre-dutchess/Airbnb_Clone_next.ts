@@ -27,7 +27,13 @@ export default async function PropertyPage() {
                 createdAt: "desc"
             }
         })
-  if(listings.length === 0){
+  const safeListings = listings.map((listing:any)=>{
+            return {
+                ...listing,
+                createdAt: listing.createdAt.toISOString()
+            }
+        })
+  if(safeListings.length === 0){
     return (
       <ClientOnly>
         <EmptyState 
@@ -39,7 +45,7 @@ export default async function PropertyPage() {
   }
   return (
     <ClientOnly>
-      <PropertyClient curUser = {curUser} listings = {listings}/>
+      <PropertyClient curUser = {curUser} listings = {safeListings}/>
     </ClientOnly>
   )
 }
