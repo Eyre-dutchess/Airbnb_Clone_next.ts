@@ -1,4 +1,5 @@
-import { Listing, Reservation, User } from "@prisma/client";
+
+import { Listing, Reservation, User } from "../generated/prisma"
 
 export type SafeUser = Omit<
     User,
