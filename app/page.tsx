@@ -11,7 +11,7 @@ interface HomeProps{
 }
 const Home = async({searchParams} : HomeProps)=> {
   const curUser = await getCurrentUser() 
-  const listings = await getListings(searchParams)
+  const listings = await getListings(searchParams || "")
  
 
   if(listings.length < 1){
