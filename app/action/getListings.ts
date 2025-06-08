@@ -11,12 +11,12 @@ export interface IListingParams{
     endDate?: string
 }
 export const getListings = async (
-    params: IListingParams
+    params: Promise<IListingParams>
 ) =>{
     try {
         const{
             userId,startDate, endDate,category,location,roomCount,guestCount,bathCount
-        } =  params
+        } = await params
 
         let query: any = {}
        
