@@ -6,14 +6,11 @@ import { Container } from "./components/Container";
 import { EmptyState } from "./components/EmptyState";
 import { ListingCard } from "./components/listing/ListingCard";
 
-interface HomeProps{
-    searchParams: IListingParams
-}
-const Home = async({searchParams} : HomeProps)=> {
-  const curUser = await getCurrentUser() 
-  const listings = await getListings(searchParams || "")
- 
 
+export default async function Page(
+  {searchParams} : {searchParams: Promise<IListingParams>}) {
+  const curUser = await getCurrentUser() 
+  const listings = await getListings(searchParams)
   if(listings.length < 1){
     return (
       <ClientOnly>
@@ -34,4 +31,3 @@ const Home = async({searchParams} : HomeProps)=> {
   );
 }
 
-export default Home
