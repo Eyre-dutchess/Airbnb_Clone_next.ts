@@ -6,15 +6,10 @@ import { Container } from "./components/Container";
 import { EmptyState } from "./components/EmptyState";
 import { ListingCard } from "./components/listing/ListingCard";
 
-
-type  TSearchParams= Promise<IListingParams>
-
-interface HomeParams{
-    searchParams: TSearchParams
+interface HomeProps{
+    searchParams:Promise<IListingParams>
 }
-export default async function Home(
-  {searchParams} :HomeParams
-  ){
+const Home = async({searchParams} : HomeProps)=> {
   const curUser = await getCurrentUser() 
   const listings = await getListings(searchParams)
  
@@ -38,3 +33,5 @@ export default async function Home(
         </Container>
   );
 }
+
+export default Home
