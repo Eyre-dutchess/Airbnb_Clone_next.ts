@@ -8,9 +8,9 @@ import { ListingCard } from "./components/listing/ListingCard";
 
 
 export default async function Page(
-  {searchParams} : {searchParams: Promise<IListingParams>}) {
+  {params} : {params: Promise<IListingParams>}) {
   const curUser = await getCurrentUser() 
-  const listings = await getListings(searchParams)
+  const listings = await getListings(params)
   if(listings.length < 1){
     return (
       <ClientOnly>
