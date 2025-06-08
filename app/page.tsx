@@ -7,7 +7,7 @@ import { EmptyState } from "./components/EmptyState";
 import { ListingCard } from "./components/listing/ListingCard";
 
 interface HomeProps{
-    searchParams:Promise<IListingParams>
+    searchParams: IListingParams
 }
 const Home = async({searchParams} : HomeProps)=> {
   const curUser = await getCurrentUser() 
